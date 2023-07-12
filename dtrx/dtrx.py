@@ -282,8 +282,7 @@ class BaseExtractor(object):
             except subprocess.TimeoutExpired:
                 logging.debug("timeout hit...")
                 self.timeout_check(pipe)
-                # Verify that we're not waiting for an password
-                # in non-interactive mode
+                # Verify that we're not waiting for a password in non-interactive mode
                 if self.pw_prompted and self.ignore_pw:
                     pipe.kill()
                     # Whatever extractor we're using probably left the
@@ -292,8 +291,8 @@ class BaseExtractor(object):
                     # Clean up the error output
                     self.stderr = ""
                     raise ExtractorError(
-                        "cannot extract encrypted archive '%s' in non-interactive mode without a password"
-                        % (self.filename)
+                        "cannot extract encrypted archive '%s' in non-interactive mode"
+                        " without a password" % (self.filename)
                     )
 
     def send_stdout_to_dev_null(self):
@@ -840,8 +839,7 @@ class RarExtractor(NoPipeExtractor):
         """
         cmd = ["unrar", "x"]
         if self.password:
-            cmd.append(f"-p{self.password}")
-            cmd.append(f"-p%s" % self.password)
+            cmd.append("-p%s" % self.password)
         return cmd
 
     def get_filenames(self):
@@ -883,8 +881,7 @@ class UnarchiverExtractor(NoPipeExtractor):
         """
         cmd = ["unar", "-D"]
         if self.password:
-            cmd.append(f"-p {self.password}")
-            cmd.append(f"-p %s" % self.password)
+            cmd.append("-p %s" % self.password)
         return cmd
 
     def get_filenames(self):
@@ -907,7 +904,7 @@ class ArjExtractor(NoPipeExtractor):
         """
         cmd = ["arj", "x", "-y"]
         if self.password:
-            cmd.append(f"-g%s" % self.password)
+            cmd.append("-g%s" % self.password)
         return cmd
 
     def get_filenames(self):
