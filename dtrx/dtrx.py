@@ -663,7 +663,7 @@ class ZipExtractor(NoPipeExtractor):
         """
         cmd = ["unzip", "-q"]
         if self.password:
-            cmd.append(f"-P {self.password}")
+            cmd.append("-P %s" % (self.password,))
         return cmd
 
     def is_fatal_error(self, status):
@@ -724,7 +724,7 @@ class SevenExtractor(NoPipeExtractor):
         """
         cmd = ["7z", "x"]
         if self.password:
-            cmd.append(f"-p{self.password}")
+            cmd.append("-p%s" % (self.password,))
         return cmd
 
     def get_filenames(self):
@@ -841,6 +841,7 @@ class RarExtractor(NoPipeExtractor):
         cmd = ["unrar", "x"]
         if self.password:
             cmd.append(f"-p{self.password}")
+            cmd.append(f"-p%s" % self.password)
         return cmd
 
     def get_filenames(self):
