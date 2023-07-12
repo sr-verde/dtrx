@@ -839,7 +839,7 @@ class RarExtractor(NoPipeExtractor):
         """
         cmd = ["unrar", "x"]
         if self.password:
-            cmd.append("-p%s" % self.password)
+            cmd.append("-p%s" % (self.password,))
         return cmd
 
     def get_filenames(self):
@@ -881,7 +881,7 @@ class UnarchiverExtractor(NoPipeExtractor):
         """
         cmd = ["unar", "-D"]
         if self.password:
-            cmd.append("-p %s" % self.password)
+            cmd.append("-p %s" % (self.password,))
         return cmd
 
     def get_filenames(self):
@@ -904,7 +904,7 @@ class ArjExtractor(NoPipeExtractor):
         """
         cmd = ["arj", "x", "-y"]
         if self.password:
-            cmd.append("-g%s" % self.password)
+            cmd.append("-g%s" % (self.password,))
         return cmd
 
     def get_filenames(self):
