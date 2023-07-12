@@ -874,8 +874,18 @@ class RarExtractor(NoPipeExtractor):
 
 class UnarchiverExtractor(NoPipeExtractor):
     file_type = "RAR archive"
-    extract_command = ["unar", "-D"]
     list_command = ["lsar"]
+
+    @property
+    def extract_command(self):
+        """
+        Returns the extraction command and adds a password if given.
+        """
+        cmd = ["unar", "-D"]
+        if self.password:
+            cmd.append(f"-p {self.password}")
+            cmd.append(f"-p %s" % self.password)
+        return cmd
 
     def get_filenames(self):
         output = NoPipeExtractor.get_filenames(self)
@@ -887,9 +897,18 @@ class UnarchiverExtractor(NoPipeExtractor):
 
 class ArjExtractor(NoPipeExtractor):
     file_type = "ARJ archive"
-    extract_command = ["arj", "x", "-y"]
     list_command = ["arj", "v"]
     prefix_re = re.compile(r"^\d+\)\s+")
+
+    @property
+    def extract_command(self):
+        """
+        Returns the extraction command and adds a password if given.
+        """
+        cmd = ["arj", "x", "-y"]
+        if self.password:
+            cmd.append(f"-g%s" % self.password)
+        return cmd
 
     def get_filenames(self):
         for line in NoPipeExtractor.get_filenames(self):
