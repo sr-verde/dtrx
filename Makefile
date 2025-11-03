@@ -1,6 +1,6 @@
 # A small bit of automation for various steps in building + releasing dtrx
 
-DTRX_TAGNAME=$(shell python -c 'from dtrx import dtrx; print(dtrx.VERSION)')
+DTRX_TAGNAME=$(shell uv version --short)
 
 # require make 4.3+ for grouped targets
 MINIMUM_MAKE_VERSION = 4.3
