@@ -42,4 +42,4 @@ publish-release: $(BUILD_ARTIFACTS)
 	@echo -n "About to publish to GitHub and PyPi, are you sure? [y/N] " && read ans && [ $${ans:-'N'} = 'y' ]
 	gh release create --generate-notes $(DTRX_TAGNAME)
 	gh release upload $(DTRX_TAGNAME) dist/*
-	uv publish --token="${PYPI_TOKEN}"dist/dtrx-$(DTRX_TAGNAME).tar.gz dist/dtrx-$(DTRX_TAGNAME)-py2.py3-none-any.whl
+	@uv publish --token="${PYPI_TOKEN}" dist/dtrx-$(DTRX_TAGNAME).tar.gz dist/dtrx-$(DTRX_TAGNAME)-py3-none-any.whl
