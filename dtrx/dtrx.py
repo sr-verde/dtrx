@@ -67,7 +67,7 @@ try:
 except NameError:
     from sets import Set as set
 
-VERSION = "8.5.3"
+VERSION = "8.6.0"
 VERSION_BANNER = """dtrx version %s
 Copyright © 2006-2011 Brett Smith <brettcsmith@brettcsmith.org>
 Copyright © 2008 Peter Kelemen <Peter.Kelemen@gmail.com>
@@ -159,8 +159,9 @@ class DirectoryChecker(FilenameChecker):
     def create(self):
         dirname = tempfile.mkdtemp(prefix=self.original_name + ".", dir=".")
         # We want to directory to be relative to current directory
-        dirname = os.path.join(".",os.path.relpath(dirname))
+        dirname = os.path.join(".", os.path.relpath(dirname))
         return dirname
+
 
 class NonblockingRead(object):
     iostream = None
@@ -425,7 +426,7 @@ class BaseExtractor(object):
         try:
             dirname = tempfile.mkdtemp(prefix=".dtrx-", dir=".")
             # We want to directory to be relative to current directory
-            dirname = os.path.join(".",os.path.relpath(dirname))
+            dirname = os.path.join(".", os.path.relpath(dirname))
             self.target = dirname
 
         except (OSError, IOError) as error:
