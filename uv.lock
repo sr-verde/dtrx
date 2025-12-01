@@ -13,7 +13,7 @@ wheels = [
 
 [[package]]
 name = "dtrx"
-version = "8.7.0"
+version = "8.7.1"
 source = { editable = "." }
 dependencies = [
     { name = "unsupported-python", marker = "sys_platform == 'win32'" },

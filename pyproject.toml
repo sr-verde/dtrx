@@ -1,6 +1,6 @@
 [project]
 name = "dtrx"
-version = "8.7.0"
+version = "8.7.1"
 description = "Script to intelligently extract multiple archive types"
 readme = "README.md"
 license = "GPL-3.0-or-later"
